@@ -1,7 +1,7 @@
 ### Technologies Used:
 
-- ** Next.js **
-- ** Shadcn with Tailwind **
+- Next.js
+- Shadcn with Tailwind CSS
 
 ## Getting Started
 

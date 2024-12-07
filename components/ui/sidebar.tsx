@@ -24,7 +24,7 @@ const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 const SIDEBAR_WIDTH = "16rem";
 const SIDEBAR_WIDTH_MOBILE = "18rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
-const SIDEBAR_KEYBOARD_SHORTCUT = "b";
+const SIDEBAR_KEYBOARD_SHORTCUT = "b"; // Cmd/Ctrl + "b" would be actual shortcut.
 
 type SidebarContext = {
     state: "expanded" | "collapsed";
@@ -93,8 +93,8 @@ const SidebarProvider = React.forwardRef<
         // Helper to toggle the sidebar.
         const toggleSidebar = React.useCallback(() => {
             return isMobile
-                ? setOpenMobile((open) => !open)
-                : setOpen((open) => !open);
+                ? setOpenMobile((mobileOpen) => !mobileOpen)
+                : setOpen((desktopOpen) => !desktopOpen);
         }, [isMobile, setOpen, setOpenMobile]);
 
         // Adds a keyboard shortcut to toggle the sidebar.
@@ -281,21 +281,30 @@ const SidebarTrigger = React.forwardRef<
     const { toggleSidebar } = useSidebar();
 
     return (
-        <Button
-            ref={ref}
-            data-sidebar="trigger"
-            variant="ghost"
-            size="icon"
-            className={cn("h-7 w-7", className)}
-            onClick={(event) => {
-                onClick?.(event);
-                toggleSidebar();
-            }}
-            {...props}
-        >
-            <PanelLeft />
-            <span className="sr-only">Toggle Sidebar</span>
-        </Button>
+        <TooltipProvider>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <Button
+                        ref={ref}
+                        data-sidebar="trigger"
+                        variant="ghost"
+                        size="icon"
+                        className={cn("h-7 w-7", className)}
+                        onClick={(event) => {
+                            onClick?.(event);
+                            toggleSidebar();
+                        }}
+                        {...props}
+                    >
+                        <PanelLeft />
+                        <span className="sr-only">Toggle Sidebar</span>
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>Toggle Sidebar</p>
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
     );
 });
 SidebarTrigger.displayName = "SidebarTrigger";

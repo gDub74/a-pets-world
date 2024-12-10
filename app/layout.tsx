@@ -22,7 +22,7 @@ const geistMono = localFont({
 export const metadata: Metadata = {
     title: "A Pet's World",
     description:
-        "Pet Finder type Adoption With A Pet Based Social Media Twist and Historical Pet Adoption Data",
+        "A Pet oriented social media app with a Pet Finder based type Adoption feature.",
 };
 
 export default function RootLayout({

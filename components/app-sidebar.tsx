@@ -20,12 +20,12 @@ const items = [
         icon: Home,
     },
     {
-        title: "Inbox",
+        title: "Messages",
         url: "#",
         icon: Inbox,
     },
     {
-        title: "Calendar",
+        title: "Adopt",
         url: "#",
         icon: Calendar,
     },
@@ -53,7 +53,9 @@ export const AppSidebar = (): ReactElement => (
                                 <SidebarMenuButton asChild>
                                     <a href={item.url}>
                                         <item.icon />
-                                        <span>{item.title}</span>
+                                        <span className="text-lg">
+                                            {item.title}
+                                        </span>
                                     </a>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>

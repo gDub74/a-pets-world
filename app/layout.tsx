@@ -4,6 +4,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -32,17 +33,24 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
-                {/* need header here */}
-                <SidebarProvider>
-                    <AppSidebar />
-                    <main>
-                        <SidebarTrigger />
-                        {children}
-                    </main>
-                </SidebarProvider>
-                <footer>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    {/* need header here */}
+                    <SidebarProvider>
+                        <AppSidebar />
+                        <main>
+                            <SidebarTrigger />
+                            {children}
+                        </main>
+                    </SidebarProvider>
+                </ThemeProvider>
+                {/* <footer>
                     <p>Footer Stuff can go here</p>
-                </footer>
+                </footer> */}
             </body>
         </html>
     );

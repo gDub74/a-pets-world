@@ -45,7 +45,7 @@ export const AppSidebar = (): ReactElement => (
     <Sidebar>
         <SidebarContent>
             <SidebarGroup>
-                <SidebarGroupLabel>A Pet's World</SidebarGroupLabel>
+                <SidebarGroupLabel>{"A Pet's World"}</SidebarGroupLabel>
                 <SidebarGroupContent>
                     <SidebarMenu>
                         {items.map((item) => (

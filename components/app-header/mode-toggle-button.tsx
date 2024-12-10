@@ -11,8 +11,12 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "../ui/tooltip";
+import { cn } from "@/lib/utils";
 
-export const ModeToggleButton = (): ReactElement => {
+export const ModeToggleButton = ({
+    className,
+    ...props
+}: React.ComponentProps<typeof Button>): ReactElement => {
     const { setTheme, theme } = useTheme();
 
     const renderIcon = () => {
@@ -33,6 +37,8 @@ export const ModeToggleButton = (): ReactElement => {
                         onClick={() =>
                             setTheme(theme === "dark" ? "light" : "dark")
                         }
+                        className={cn("h-7 w-7", className)}
+                        {...props}
                     >
                         {renderIcon()}
                     </Button>

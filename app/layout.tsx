@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
-import { ModeToggleButton } from "@/components/app-header/mode-toggle-button";
+import { AppHeader } from "@/components/app-header";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -41,17 +41,10 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    {/* <AppHeader /> */}
                     <SidebarProvider>
                         <AppSidebar />
                         <main className="w-full">
-                            <div className="sticky top-0 z-50 w-full flex items-center">
-                                <SidebarTrigger />
-                                <span className="ml-auto">
-                                    <ModeToggleButton />
-                                </span>
-                            </div>
-
+                            <AppHeader />
                             {children}
                         </main>
                     </SidebarProvider>

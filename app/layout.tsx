@@ -6,6 +6,8 @@ import { AppSidebar } from "@/components/app-sidebar";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
+import { ModeToggleButton } from "@/components/app-header/mode-toggle-button";
+
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
     variable: "--font-geist-sans",
@@ -39,18 +41,24 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    {/* need header here */}
+                    {/* <AppHeader /> */}
                     <SidebarProvider>
                         <AppSidebar />
-                        <main>
-                            <SidebarTrigger />
+                        <main className="w-full">
+                            <div className="sticky top-0 z-50 w-full flex items-center">
+                                <SidebarTrigger />
+                                <span className="ml-auto">
+                                    <ModeToggleButton />
+                                </span>
+                            </div>
+
                             {children}
                         </main>
                     </SidebarProvider>
-                </ThemeProvider>
-                {/* <footer>
+                    {/* <footer>
                     <p>Footer Stuff can go here</p>
                 </footer> */}
+                </ThemeProvider>
             </body>
         </html>
     );

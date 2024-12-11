@@ -52,7 +52,7 @@ const items = [
         meta: {
             description:
                 "This is the notifications page for the user to see their notifications.",
-            count: 3, // this will be dynamic and displayed as a badge
+            count: 13, // this will be dynamic and displayed as a badge
         },
     },
     {
@@ -80,7 +80,7 @@ const items = [
         icon: Dashboard,
         meta: {
             description:
-                "This is the dashboard page for the user to see pet based charts and data visualizations.",
+                "This is the dashboard page for the user to see pet based charts and data visualizations, trending hashtags.",
         },
     },
     {
@@ -126,7 +126,7 @@ const footerItems = [
 
 export const AppSidebar = (): ReactElement => (
     <Sidebar>
-        <SidebarContent className="h-full p-4">
+        <SidebarContent className="h-full p-3">
             <SidebarGroup className="h-full">
                 <SidebarGroupLabel className="h-16 text-base font-bold mb-12">
                     {/* TODO: Replace with svg logo */}
@@ -159,7 +159,7 @@ export const AppSidebar = (): ReactElement => (
                 </SidebarGroupContent>
             </SidebarGroup>
         </SidebarContent>
-        <SidebarFooter className="p-6">
+        <SidebarFooter className="p-5">
             {footerItems.map((item) => (
                 <SidebarMenuButton asChild className="[&_svg]:size-6">
                     <a href={item.url}>

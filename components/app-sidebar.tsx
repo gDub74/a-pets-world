@@ -11,6 +11,7 @@ import {
     Store as Marketplace,
     Blend as Community,
 } from "lucide-react";
+import pluralize from "pluralize";
 
 import {
     Sidebar,
@@ -148,6 +149,13 @@ export const AppSidebar = (): ReactElement => (
                                             {item?.meta?.count ? (
                                                 <Badge variant="notify">
                                                     {item.meta.count}
+                                                    <span className="sr-only">
+                                                        {pluralize(
+                                                            "notification",
+                                                            item.meta.count,
+                                                            true,
+                                                        )}
+                                                    </span>
                                                 </Badge>
                                             ) : null}
                                         </span>

@@ -178,8 +178,10 @@ export const AppSidebar = (): ReactElement => (
                     </a>
                 </SidebarMenuButton>
             ))}
-            <div className="h-8 mt-4 flex items-center justify-center">
-                <span className="text-xs">{"© 2024 A Pet's World"}</span>
+            <div className=" mt-8 flex items-center justify-center">
+                <span className="text-[0.625rem]">
+                    {"© 2024 A Pet's World"}
+                </span>
             </div>
         </SidebarFooter>
     </Sidebar>

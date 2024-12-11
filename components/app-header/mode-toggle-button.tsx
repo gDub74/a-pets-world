@@ -46,8 +46,8 @@ export const ModeToggleButton = ({
                 <TooltipContent>
                     <p>
                         {theme === "dark"
-                            ? "Switch to light mode"
-                            : "Switch to dark mode"}
+                            ? "Toggle Light Mode"
+                            : "Toggle Dark Mode"}
                     </p>
                 </TooltipContent>
             </Tooltip>

@@ -1,9 +1,20 @@
 import { ReactElement } from "react";
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import {
+    Home,
+    Inbox,
+    Search,
+    Settings,
+    ChartNoAxesColumn as Dashboard,
+    HeartHandshake as Adopt,
+    SquareUserRound as Profile,
+    Bell as Notifications,
+    Store as Marketplace,
+} from "lucide-react";
 
 import {
     Sidebar,
     SidebarContent,
+    SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
@@ -20,20 +31,43 @@ const items = [
         icon: Home,
     },
     {
+        title: "Adopt",
+        url: "#",
+        icon: Adopt,
+    },
+    {
+        title: "Notifications",
+        url: "#",
+        icon: Notifications,
+    },
+    {
         title: "Messages",
         url: "#",
         icon: Inbox,
-    },
-    {
-        title: "Adopt",
-        url: "#",
-        icon: Calendar,
     },
     {
         title: "Search",
         url: "#",
         icon: Search,
     },
+    {
+        title: "Dashboard",
+        url: "#",
+        icon: Dashboard,
+    },
+    {
+        title: "Profile",
+        url: "#",
+        icon: Profile,
+    },
+    {
+        title: "Marketplace",
+        url: "#",
+        icon: Marketplace,
+    },
+];
+
+const footerItems = [
     {
         title: "Settings",
         url: "#",
@@ -43,17 +77,23 @@ const items = [
 
 export const AppSidebar = (): ReactElement => (
     <Sidebar>
-        <SidebarContent>
-            <SidebarGroup>
-                <SidebarGroupLabel>{"A Pet's World"}</SidebarGroupLabel>
+        <SidebarContent className="h-full p-4">
+            <SidebarGroup className="h-full">
+                <SidebarGroupLabel className="h-16 text-base font-bold mb-12">
+                    {/* TODO: Replace with svg logo */}
+                    {"A Pet's World"}
+                </SidebarGroupLabel>
                 <SidebarGroupContent>
-                    <SidebarMenu>
+                    <SidebarMenu className="gap-6">
                         {items.map((item) => (
                             <SidebarMenuItem key={item.title}>
-                                <SidebarMenuButton asChild>
+                                <SidebarMenuButton
+                                    asChild
+                                    className="[&_svg]:size-6"
+                                >
                                     <a href={item.url}>
-                                        <item.icon />
-                                        <span className="text-lg">
+                                        <item.icon className="mr-2" />
+                                        <span className="text-base my-12 font-semibold">
                                             {item.title}
                                         </span>
                                     </a>
@@ -64,5 +104,20 @@ export const AppSidebar = (): ReactElement => (
                 </SidebarGroupContent>
             </SidebarGroup>
         </SidebarContent>
+        <SidebarFooter className="p-8">
+            {footerItems.map((item) => (
+                <SidebarMenuButton asChild className="[&_svg]:size-6">
+                    <a href={item.url}>
+                        <item.icon className="mr-2" />
+                        <span className="text-base my-8 font-semibold">
+                            {item.title}
+                        </span>
+                    </a>
+                </SidebarMenuButton>
+            ))}
+            <div className="h-8 mt-4 flex items-center justify-center">
+                <span className="text-xs">{"© 2024 A Pet's World"}</span>
+            </div>
+        </SidebarFooter>
     </Sidebar>
 );

@@ -169,7 +169,11 @@ export const AppSidebar = (): ReactElement => (
         </SidebarContent>
         <SidebarFooter className="p-5">
             {footerItems.map((item) => (
-                <SidebarMenuButton asChild className="[&_svg]:size-6">
+                <SidebarMenuButton
+                    key={item.title}
+                    asChild
+                    className="[&_svg]:size-6"
+                >
                     <a href={item.url}>
                         <item.icon className="mr-2" />
                         <span className="text-base my-8 font-semibold">

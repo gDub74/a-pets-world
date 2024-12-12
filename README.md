@@ -1,8 +1,9 @@
 ### Technologies Used:
 
 - Next.js
-- shadcn with Tailwind CSS
+- shadcn / Tailwind CSS
 - next-themes for darkMode/lightMode theme switching
+- pluralize
 
 ## Getting Started
 

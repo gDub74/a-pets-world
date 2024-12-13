@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { ModeToggleButton } from "./mode-toggle-button";
 import { SidebarTrigger } from "../ui/sidebar";
 

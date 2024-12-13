@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
@@ -16,8 +16,17 @@ import { cn } from "@/lib/utils";
 export const ModeToggleButton = ({
     className,
     ...props
-}: React.ComponentProps<typeof Button>): ReactElement => {
+}: React.ComponentProps<typeof Button>): ReactElement | null => {
     const { setTheme, theme } = useTheme();
+
+    /**
+     *  This silliness is a suggested solution to prevent Hydration issue since the theme is not available on the server.
+     *  https://nextjs.org/docs/messages/react-hydration-error#solution-1-using-useeffect-to-run-on-the-client-only
+     * **/
+    const [isClient, setIsClient] = useState(false);
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     const renderIcon = () => {
         if (theme && theme === "dark") {
@@ -26,6 +35,10 @@ export const ModeToggleButton = ({
 
         return <Sun className="h-[1rem] w-[1rem]" />;
     };
+
+    if (!isClient) {
+        return null;
+    }
 
     return (
         <TooltipProvider>

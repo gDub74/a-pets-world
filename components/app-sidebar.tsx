@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactElement } from "react";
 import {
     Home,
@@ -23,11 +25,12 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
+    useSidebar,
 } from "@/components/ui/sidebar";
 import { Badge } from "./ui/badge";
+import { useIsMobile } from "@/hooks/use-mobile";
 
-// Menu items.
-const items = [
+const menuItems = [
     {
         title: "Home",
         url: "#",
@@ -53,7 +56,7 @@ const items = [
         meta: {
             description:
                 "This is the notifications page for the user to see their notifications.",
-            count: 13, // this will be dynamic and displayed as a badge
+            count: 13, // this will need to be dynamic
         },
     },
     {
@@ -63,7 +66,7 @@ const items = [
         meta: {
             description:
                 "This is the messages page for the user to see their direct private messages.",
-            count: 1, // this will be dynamic and displayed as a badge
+            count: 1, // this will need to be dynamic
         },
     },
     {
@@ -125,29 +128,34 @@ const footerItems = [
     },
 ];
 
-export const AppSidebar = (): ReactElement => (
-    <Sidebar>
-        <SidebarContent className="h-full p-3">
-            <SidebarGroup className="h-full">
-                <SidebarGroupLabel className="h-16 text-base font-bold mb-12">
-                    {/* TODO: Replace with svg logo */}
-                    {"A Pet's World"}
-                </SidebarGroupLabel>
-                <SidebarGroupContent>
-                    <SidebarMenu className="gap-6">
-                        {items.map((item) => (
-                            <SidebarMenuItem key={item.title}>
-                                <SidebarMenuButton
-                                    asChild
-                                    className="[&_svg]:size-6"
-                                >
-                                    <a href={item.url}>
-                                        <item.icon className="mr-2" />
+export const AppSidebar = (): ReactElement => {
+    const isMobile = useIsMobile();
+    const { state } = useSidebar();
 
-                                        <span className="text-base my-12 font-semibold">
-                                            {item.title}
-                                            {item?.meta?.count ? (
-                                                <Badge variant="notify">
+    return (
+        <Sidebar collapsible={`${isMobile ? "offcanvas" : "icon"}`}>
+            <SidebarContent className="h-full p-3">
+                <SidebarGroup className="h-full">
+                    <SidebarGroupLabel className="h-16 text-base font-bold mb-12">
+                        {/* TODO: Replace with svg logo */}
+                        {"A Pet's World"}
+                    </SidebarGroupLabel>
+                    <SidebarGroupContent>
+                        <SidebarMenu className="gap-6">
+                            {menuItems.map((item) => (
+                                <SidebarMenuItem key={item.title}>
+                                    <SidebarMenuButton
+                                        asChild
+                                        className="[&_svg]:size-6"
+                                    >
+                                        <a href={item.url}>
+                                            <item.icon className="mr-2" />
+                                            {state === "collapsed" &&
+                                            item?.meta?.count ? (
+                                                <Badge
+                                                    variant="notify"
+                                                    className="left-0.5"
+                                                >
                                                     {item.meta.count}
                                                     <span className="sr-only">
                                                         {pluralize(
@@ -158,35 +166,51 @@ export const AppSidebar = (): ReactElement => (
                                                     </span>
                                                 </Badge>
                                             ) : null}
-                                        </span>
-                                    </a>
-                                </SidebarMenuButton>
-                            </SidebarMenuItem>
-                        ))}
-                    </SidebarMenu>
-                </SidebarGroupContent>
-            </SidebarGroup>
-        </SidebarContent>
-        <SidebarFooter className="p-5">
-            {footerItems.map((item) => (
-                <SidebarMenuButton
-                    key={item.title}
-                    asChild
-                    className="[&_svg]:size-6"
-                >
-                    <a href={item.url}>
-                        <item.icon className="mr-2" />
-                        <span className="text-base my-8 font-semibold">
-                            {item.title}
-                        </span>
-                    </a>
-                </SidebarMenuButton>
-            ))}
-            <div className=" mt-8 flex items-center justify-center">
-                <span className="text-[0.625rem]">
-                    {"© 2024 A Pet's World"}
-                </span>
-            </div>
-        </SidebarFooter>
-    </Sidebar>
-);
+                                            <span className="text-base my-12 font-semibold">
+                                                {item.title}
+                                                {state === "expanded" &&
+                                                item?.meta?.count ? (
+                                                    <Badge variant="notify">
+                                                        {item.meta.count}
+                                                        <span className="sr-only">
+                                                            {pluralize(
+                                                                "notification",
+                                                                item.meta.count,
+                                                                true,
+                                                            )}
+                                                        </span>
+                                                    </Badge>
+                                                ) : null}
+                                            </span>
+                                        </a>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                            ))}
+                        </SidebarMenu>
+                    </SidebarGroupContent>
+                </SidebarGroup>
+            </SidebarContent>
+            <SidebarFooter className="p-5">
+                {footerItems.map((item) => (
+                    <SidebarMenuButton
+                        key={item.title}
+                        asChild
+                        className="[&_svg]:size-6"
+                    >
+                        <a href={item.url}>
+                            <item.icon className="mr-2" />
+                            <span className="text-base my-8 font-semibold">
+                                {item.title}
+                            </span>
+                        </a>
+                    </SidebarMenuButton>
+                ))}
+                <div className=" mt-8 flex items-center justify-center">
+                    <span className="text-[0.625rem]">
+                        {"© 2024 A Pet's World"}
+                    </span>
+                </div>
+            </SidebarFooter>
+        </Sidebar>
+    );
+};

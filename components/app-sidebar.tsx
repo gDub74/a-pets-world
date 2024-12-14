@@ -30,8 +30,7 @@ import {
 import { Badge } from "./ui/badge";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-// Menu items.
-const items = [
+const menuItems = [
     {
         title: "Home",
         url: "#",
@@ -57,7 +56,7 @@ const items = [
         meta: {
             description:
                 "This is the notifications page for the user to see their notifications.",
-            count: 13, // this will be dynamic and displayed as a badge
+            count: 13, // this will need to be dynamic
         },
     },
     {
@@ -67,7 +66,7 @@ const items = [
         meta: {
             description:
                 "This is the messages page for the user to see their direct private messages.",
-            count: 1, // this will be dynamic and displayed as a badge
+            count: 1, // this will need to be dynamic
         },
     },
     {
@@ -131,6 +130,7 @@ const footerItems = [
 
 export const AppSidebar = (): ReactElement => {
     const isMobile = useIsMobile();
+    const { state } = useSidebar();
 
     return (
         <Sidebar collapsible={`${isMobile ? "offcanvas" : "icon"}`}>
@@ -142,7 +142,7 @@ export const AppSidebar = (): ReactElement => {
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu className="gap-6">
-                            {items.map((item) => (
+                            {menuItems.map((item) => (
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton
                                         asChild
@@ -150,10 +150,26 @@ export const AppSidebar = (): ReactElement => {
                                     >
                                         <a href={item.url}>
                                             <item.icon className="mr-2" />
-
+                                            {state === "collapsed" &&
+                                            item?.meta?.count ? (
+                                                <Badge
+                                                    variant="notify"
+                                                    className="left-0.5"
+                                                >
+                                                    {item.meta.count}
+                                                    <span className="sr-only">
+                                                        {pluralize(
+                                                            "notification",
+                                                            item.meta.count,
+                                                            true,
+                                                        )}
+                                                    </span>
+                                                </Badge>
+                                            ) : null}
                                             <span className="text-base my-12 font-semibold">
                                                 {item.title}
-                                                {item?.meta?.count ? (
+                                                {state === "expanded" &&
+                                                item?.meta?.count ? (
                                                     <Badge variant="notify">
                                                         {item.meta.count}
                                                         <span className="sr-only">

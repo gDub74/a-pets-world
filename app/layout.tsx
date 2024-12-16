@@ -2,22 +2,13 @@ import type { Metadata } from "next";
 import { Mulish } from "next/font/google";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
-import {
-    ClerkProvider,
-    SignInButton,
-    SignedIn,
-    SignedOut,
-} from "@clerk/nextjs";
+import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import { AppHeader } from "@/components/app-header";
-import {
-    AppRootSignIn,
-    SignedOutWelcomeMessage,
-} from "@/components/app-root-sign-in";
-import { Button } from "@/components/ui/button";
+import { AppRootSignIn } from "@/components/app-root-sign-in";
 
 const mulish = Mulish({
     subsets: ["latin"],

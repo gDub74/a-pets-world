@@ -1,17 +1,17 @@
 "use client";
 
 import { SignInButton } from "@clerk/nextjs";
-import { ReactElement, ReactNode } from "react";
+import { ReactElement } from "react";
 import { Button } from "./ui/button";
 
 const SignedOutWelcomeMessage = (): ReactElement => {
     return (
         <div className="items-center justify-items-center p-10">
             <h1 className="my-8">
-                Welcome to A Pet's World, we're so happy you stopped by!
+                {"Welcome to A Pet's World, we're so happy you stopped by!"}
             </h1>
             <h2 className="my-2">
-                Sign in to find and follow all of your favorite pets.
+                {"Sign in to find and follow all of your favorite pets."}
             </h2>
         </div>
     );

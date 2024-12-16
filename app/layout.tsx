@@ -13,6 +13,11 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import { AppHeader } from "@/components/app-header";
+import {
+    AppRootSignIn,
+    SignedOutWelcomeMessage,
+} from "@/components/app-root-sign-in";
+import { Button } from "@/components/ui/button";
 
 const mulish = Mulish({
     subsets: ["latin"],
@@ -40,7 +45,7 @@ export default function RootLayout({
                         disableTransitionOnChange
                     >
                         <SignedOut>
-                            <SignInButton />
+                            <AppRootSignIn />
                         </SignedOut>
                         <SignedIn>
                             <SidebarProvider>
@@ -49,11 +54,11 @@ export default function RootLayout({
                                     <AppHeader />
                                     {children}
                                 </main>
+                                {/* <footer>
+                    <p>Footer Stuff can go here</p>
+                    </footer> */}
                             </SidebarProvider>
                         </SignedIn>
-                        {/* <footer>
-                    <p>Footer Stuff can go here</p>
-                </footer> */}
                     </ThemeProvider>
                 </body>
             </html>

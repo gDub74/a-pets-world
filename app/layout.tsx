@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import { Mulish } from "next/font/google";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import {
+    ClerkProvider,
+    SignInButton,
+    SignedIn,
+    SignedOut,
+} from "@clerk/nextjs";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -24,26 +30,33 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={`${mulish.className} antialiased`}>
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    <SidebarProvider>
-                        <AppSidebar />
-                        <main className="w-full">
-                            <AppHeader />
-                            {children}
-                        </main>
-                    </SidebarProvider>
-                    {/* <footer>
+        <ClerkProvider>
+            <html lang="en">
+                <body className={`${mulish.className} antialiased`}>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        <SignedOut>
+                            <SignInButton />
+                        </SignedOut>
+                        <SignedIn>
+                            <SidebarProvider>
+                                <AppSidebar />
+                                <main className="w-full">
+                                    <AppHeader />
+                                    {children}
+                                </main>
+                            </SidebarProvider>
+                        </SignedIn>
+                        {/* <footer>
                     <p>Footer Stuff can go here</p>
                 </footer> */}
-                </ThemeProvider>
-            </body>
-        </html>
+                    </ThemeProvider>
+                </body>
+            </html>
+        </ClerkProvider>
     );
 }

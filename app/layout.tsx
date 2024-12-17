@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-// import localFont from "next/font/local";
 import { Mulish } from "next/font/google";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import { AppHeader } from "@/components/app-header";
+import { AppRootSignIn } from "@/components/app-root-sign-in";
 
 const mulish = Mulish({
     subsets: ["latin"],
@@ -25,26 +26,35 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={`${mulish.className} antialiased`}>
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    <SidebarProvider>
-                        <AppSidebar />
-                        <main className="w-full">
-                            <AppHeader />
-                            {children}
-                        </main>
-                    </SidebarProvider>
-                    {/* <footer>
+        <ClerkProvider
+            publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+        >
+            <html lang="en">
+                <body className={`${mulish.className} antialiased`}>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        <SignedOut>
+                            <AppRootSignIn />
+                        </SignedOut>
+                        <SignedIn>
+                            <SidebarProvider>
+                                <AppSidebar />
+                                <main className="w-full">
+                                    <AppHeader />
+                                    {children}
+                                </main>
+                                {/* <footer>
                     <p>Footer Stuff can go here</p>
-                </footer> */}
-                </ThemeProvider>
-            </body>
-        </html>
+                    </footer> */}
+                            </SidebarProvider>
+                        </SignedIn>
+                    </ThemeProvider>
+                </body>
+            </html>
+        </ClerkProvider>
     );
 }

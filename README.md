@@ -3,7 +3,7 @@
 - Next.js
 - shadcn / Tailwind CSS
 - next-themes for darkMode/lightMode theme switching
-- pluralize
+- Clerk for Authentication and User Management
 
 ## Getting Started
 

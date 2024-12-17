@@ -5,7 +5,6 @@ import {
     Newspaper as Feed,
     Inbox,
     Activity as Social,
-    Settings,
     ChartNoAxesColumn as Dashboard,
     HeartHandshake as Adopt,
     SquareUserRound as Profile,
@@ -121,17 +120,17 @@ const socialAccountItems = {
     ],
 };
 
-const footerItems = [
-    {
-        title: "Settings",
-        url: "#",
-        icon: Settings,
-        meta: {
-            description:
-                "This is the settings page for the user to manage their account settings.",
-        },
-    },
-];
+// const footerItems = [
+//     {
+//         title: "Settings",
+//         url: "#",
+//         icon: Settings,
+//         meta: {
+//             description:
+//                 "This is the settings page for the user to manage their account settings.",
+//         },
+//     },
+// ];
 
 export const AppSidebar = (): ReactElement => {
     const isMobile = useIsMobile();
@@ -223,7 +222,8 @@ export const AppSidebar = (): ReactElement => {
                 </SidebarGroup>
             </SidebarContent>
             <SidebarFooter className="p-5">
-                {footerItems.map((item) => (
+                {/* TODO: comment in below if we want to work on a settings popup */}
+                {/* {footerItems.map((item) => (
                     <SidebarMenuButton
                         key={item.title}
                         asChild
@@ -236,7 +236,7 @@ export const AppSidebar = (): ReactElement => {
                             </span>
                         </a>
                     </SidebarMenuButton>
-                ))}
+                ))} */}
                 <div className=" mt-8 flex items-center justify-center">
                     <span className="text-[0.625rem]">
                         {"© 2024 A Pet's World"}

@@ -29,11 +29,13 @@ import {
 import { Badge } from "./ui/badge";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Separator } from "./ui/separator";
+import { APWRoutes } from "@/lib/APWRoutes";
 
+/** These menu items will be available in a logged-out experience */
 const publicMenuItems = [
     {
         title: "Adopt",
-        url: "#",
+        url: APWRoutes.Adopt.pathname,
         icon: Adopt,
         meta: {
             description:
@@ -42,7 +44,7 @@ const publicMenuItems = [
     },
     {
         title: "Dashboard",
-        url: "#",
+        url: APWRoutes.Dashboard.pathname,
         icon: Dashboard,
         meta: {
             description:
@@ -60,6 +62,7 @@ const publicMenuItems = [
     },
 ];
 
+/** These menu items will only be available in a logged-in experience */
 const socialAccountItems = {
     title: "Social",
     url: "#",

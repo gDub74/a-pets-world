@@ -43,7 +43,7 @@ export default function RootLayout({
                         <SignedIn>
                             <SidebarProvider>
                                 <AppSidebar />
-                                <main className="w-full">
+                                <main className="w-full min-h-screen">
                                     <AppHeader />
                                     {children}
                                 </main>

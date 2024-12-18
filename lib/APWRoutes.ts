@@ -7,6 +7,10 @@ export class APWRoutes {
         pathname: "/about",
     };
 
+    static Community = {
+        pathname: "/community",
+    };
+
     static Dashboard = {
         build: (query: string) => ({
             pathname: APWRoutes.Dashboard.pathname,
@@ -19,5 +23,25 @@ export class APWRoutes {
 
     static Favorites = {
         pathname: "/favorites",
+    };
+
+    static Feed = {
+        pathname: "/feed",
+    };
+
+    static Messages = {
+        pathname: "/messages",
+    };
+
+    static Notifications = {
+        pathname: "/notifications",
+    };
+
+    static Profile = {
+        pathname: "/profile",
+    };
+
+    static Settings = {
+        pathname: "/settings",
     };
 }

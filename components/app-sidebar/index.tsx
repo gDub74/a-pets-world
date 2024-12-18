@@ -30,12 +30,14 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Separator } from "../ui/separator";
 import { APWRoutes } from "@/lib/APWRoutes";
 import { AppSidebarFooter } from "./sidebar-footer";
+import { usePathname } from "next/navigation";
+import { buildSelectedMenuitemBackgroundColor } from "./util";
 
 /** These menu items will be available in a logged-out experience */
 const publicMenuItems = [
     {
         title: "Adopt",
-        url: APWRoutes.Adopt.pathname,
+        pathname: APWRoutes.Adopt.pathname,
         icon: Adopt,
         meta: {
             description:
@@ -44,7 +46,7 @@ const publicMenuItems = [
     },
     {
         title: "Dashboard",
-        url: APWRoutes.Dashboard.pathname,
+        pathname: APWRoutes.Dashboard.pathname,
         icon: Dashboard,
         meta: {
             description:
@@ -53,7 +55,7 @@ const publicMenuItems = [
     },
     {
         title: "Favorites",
-        url: APWRoutes.About.pathname,
+        pathname: APWRoutes.About.pathname,
         icon: Favorites,
         meta: {
             description:
@@ -74,7 +76,7 @@ const socialAccountItems = {
     children: [
         {
             title: "Profile",
-            url: "#",
+            pathname: APWRoutes.Profile.pathname,
             icon: Profile,
             meta: {
                 description:
@@ -83,7 +85,7 @@ const socialAccountItems = {
         },
         {
             title: "Feed",
-            url: "#",
+            pathname: APWRoutes.Feed.pathname,
             icon: Feed,
             meta: {
                 description:
@@ -92,7 +94,7 @@ const socialAccountItems = {
         },
         {
             title: "Community",
-            url: "#",
+            pathname: APWRoutes.Community.pathname,
             icon: Community,
             meta: {
                 description:
@@ -100,24 +102,23 @@ const socialAccountItems = {
             },
         },
         {
-            title: "Notifications",
-            url: "#",
-            icon: Notifications,
-            meta: {
-                description:
-                    "This is the notifications page for the user to see their notifications.",
-                count: 13, // this will need to be dynamic
-            },
-        },
-
-        {
             title: "Messages",
-            url: "#",
+            pathname: APWRoutes.Messages.pathname,
             icon: Inbox,
             meta: {
                 description:
                     "This is the messages page for the user to see their direct private messages.",
                 count: 1, // this will need to be dynamic
+            },
+        },
+        {
+            title: "Notifications",
+            pathname: APWRoutes.Notifications.pathname,
+            icon: Notifications,
+            meta: {
+                description:
+                    "This is the notifications page for the user to see their notifications.",
+                count: 13, // this will need to be dynamic
             },
         },
     ],
@@ -128,6 +129,7 @@ const socialAccountItems = {
  * This sidebar is be collapsible down to Icons and has a footer with additional links.
  */
 export const AppSidebar = (): ReactElement => {
+    const pathname = usePathname();
     const isMobile = useIsMobile();
     const { state } = useSidebar();
 
@@ -144,9 +146,14 @@ export const AppSidebar = (): ReactElement => {
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton
                                         asChild
-                                        className="[&_svg]:size-6"
+                                        className={`[&_svg]:size-6
+                                        ${buildSelectedMenuitemBackgroundColor(
+                                            pathname,
+                                            item.pathname,
+                                        )}
+                                            `}
                                     >
-                                        <a href={item.url}>
+                                        <a href={item.pathname}>
                                             <item.icon className="mr-2" />
                                             <span className="text-base my-12 font-semibold">
                                                 {item.title}
@@ -172,9 +179,14 @@ export const AppSidebar = (): ReactElement => {
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton
                                         asChild
-                                        className="[&_svg]:size-6"
+                                        className={`[&_svg]:size-6
+                                        ${buildSelectedMenuitemBackgroundColor(
+                                            pathname,
+                                            item.pathname,
+                                        )}
+                                            `}
                                     >
-                                        <a href={item.url}>
+                                        <a href={item.pathname}>
                                             <item.icon className="mr-2" />
                                             {state === "collapsed" &&
                                             item?.meta?.count ? (
@@ -217,7 +229,7 @@ export const AppSidebar = (): ReactElement => {
                 </SidebarGroup>
             </SidebarContent>
             <Separator className="my-4" />
-            <AppSidebarFooter state={state} />
+            <AppSidebarFooter />
         </Sidebar>
     );
 };

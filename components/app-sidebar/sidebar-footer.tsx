@@ -1,21 +1,19 @@
 import { useState } from "react";
-import { SidebarFooter, SidebarMenuButton, SidebarState } from "../ui/sidebar";
+import { SidebarFooter, SidebarMenuButton } from "../ui/sidebar";
 import {
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
 } from "@radix-ui/react-collapsible";
-import {
-    ChevronsUpDown,
-    ListCollapse,
-    Settings,
-    IdCard as About,
-} from "lucide-react";
+import { ChevronsUpDown, Settings, IdCard as About } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { APWRoutes } from "@/lib/APWRoutes";
+import { buildSelectedMenuitemBackgroundColor } from "./util";
 
 const footerItems = [
     {
         title: "Settings",
-        url: "#",
+        pathname: APWRoutes.Settings.pathname,
         icon: Settings,
         meta: {
             description:
@@ -24,7 +22,7 @@ const footerItems = [
     },
     {
         title: "About",
-        url: "#",
+        pathname: APWRoutes.About.pathname,
         icon: About,
         meta: {
             description:
@@ -33,8 +31,9 @@ const footerItems = [
     },
 ];
 
-export const AppSidebarFooter = ({ state }: { state: SidebarState }) => {
+export const AppSidebarFooter = () => {
     const [isOpen, setIsOpen] = useState(true);
+    const pathname = usePathname();
 
     return (
         <SidebarFooter className="ml-4">
@@ -42,17 +41,10 @@ export const AppSidebarFooter = ({ state }: { state: SidebarState }) => {
                 <CollapsibleTrigger asChild>
                     <SidebarMenuButton
                         onClick={() => setIsOpen((prev) => !prev)}
-                        className="flex mb-4"
+                        className="flex mb-1"
                     >
                         <span className="sr-only">Toggle</span>
-                        {state === "expanded" ? (
-                            <div className="flex w-full pr-4 py-4">
-                                <ListCollapse size="18" />
-                                <ChevronsUpDown className="h-4 w-4 ml-auto" />
-                            </div>
-                        ) : (
-                            <ChevronsUpDown className="h-4 w-4" />
-                        )}
+                        <ChevronsUpDown className="h-4 w-4 ml-auto" />
                     </SidebarMenuButton>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
@@ -60,9 +52,12 @@ export const AppSidebarFooter = ({ state }: { state: SidebarState }) => {
                         <SidebarMenuButton
                             key={item.title}
                             asChild
-                            className="[&_svg]:size-4"
+                            className={`[&_svg]:size-4  ${buildSelectedMenuitemBackgroundColor(
+                                pathname,
+                                item.pathname,
+                            )}`}
                         >
-                            <a href={item.url}>
+                            <a href={item.pathname}>
                                 <item.icon className="mr-2" />
                                 <span className="text-sm my-8">
                                     {item.title}

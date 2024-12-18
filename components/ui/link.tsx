@@ -13,7 +13,7 @@ const linkVariants = cva(
                 secondary:
                     "text-secondary-500 hover:text-secondary-600 focus:text-secondary-600",
                 asButton:
-                    "px-2 py-1 font-medium text-white bg-blue-700 rounded hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700",
+                    "px-2 py-1 font-medium text-white bg-info rounded hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700",
             },
             size: {
                 sm: "text-sm",

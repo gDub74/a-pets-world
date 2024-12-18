@@ -1,23 +1,23 @@
 export class APWRoutes {
-    // static Search = {
-    //     build: (query?: string | null, type?: SearchType | null) => ({
-    //         pathname: StorefrontRoute.Search.pathname,
-    //         query: {
-    //             query: query ?? "",
-    //             type: type ?? "",
-    //         },
-    //     }),
-    //     pathname: "/search",
-    // };
+    static Adopt = {
+        pathname: "/",
+    };
+
+    static About = {
+        pathname: "/about",
+    };
 
     static Dashboard = {
         build: (query: string) => ({
-            pathname: `/dashboard/${query}`,
+            pathname: APWRoutes.Dashboard.pathname,
+            query: {
+                query,
+            },
         }),
         pathname: "/dashboard",
     };
 
-    static Adopt = {
-        pathname: "/",
+    static Favorites = {
+        pathname: "/favorites",
     };
 }

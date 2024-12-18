@@ -36,7 +36,7 @@ const chartConfig = {
 
 export const ASPCAPetStatistics = (): ReactElement => {
     return (
-        <>
+        <article>
             <HeadingTypography>ASPCA Pet Adoption Statistics</HeadingTypography>
             <p className="text-base mb-8">
                 The following chart shows the percentage of pet ownership by
@@ -53,7 +53,7 @@ export const ASPCAPetStatistics = (): ReactElement => {
                         tickLine={false}
                         tickMargin={10}
                         axisLine={false}
-                        tickFormatter={(value) => value}
+                        tickFormatter={(value) => value[0]}
                     />
                     <ChartTooltip content={<ChartTooltipContent />} />
                     <ChartLegend content={<ChartLegendContent />} />
@@ -61,12 +61,12 @@ export const ASPCAPetStatistics = (): ReactElement => {
                     <Bar dataKey="cat" fill="var(--color-cat)" radius={4} />
                 </BarChart>
             </ChartContainer>
-            <article className="my-4 flex">
+            <div className="my-4 flex">
                 <p className="text-l">
                     <Info
-                        size="20"
-                        className="mr-1 mb-[0.25rem] inline"
+                        className="mr-1  inline"
                         fill="hsl(var(--info))"
+                        stroke={"hsl(var(--primary-foreground))"}
                     />
                     {
                         "According to the APPA, these are the most common sources from which primary methods cats and dogs are obtained as pets (Note: this information was based on a multiple response question, which results in the total % exceeding 100% individually for cats and dogs.  In addition, the ‘other’ category includes all source categories that were reported by <10% of both dog and cat owners)"
@@ -78,12 +78,12 @@ export const ASPCAPetStatistics = (): ReactElement => {
                             size="sm"
                             className="ml-2 max-h-fit"
                         >
-                            ASPCA
-                            <SquareArrowRight size="18" className="ml-2" />
+                            ...read more ASPCA
+                            <SquareArrowRight size="18" className="ml-1" />
                         </Link>
                     </span>
                 </p>
-            </article>
-        </>
+            </div>
+        </article>
     );
 };

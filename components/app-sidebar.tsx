@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import {
     Newspaper as Feed,
     Inbox,
@@ -11,6 +11,10 @@ import {
     Bell as Notifications,
     Blend as Community,
     IdCard as About,
+    BookHeart as Favorites,
+    Settings,
+    ChevronsUpDown,
+    ListCollapse,
 } from "lucide-react";
 import pluralize from "pluralize";
 
@@ -30,6 +34,13 @@ import { Badge } from "./ui/badge";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Separator } from "./ui/separator";
 import { APWRoutes } from "@/lib/APWRoutes";
+import {
+    Collapsible,
+    CollapsibleContent,
+    CollapsibleTrigger,
+} from "./ui/collapsible";
+import { Button } from "./ui/button";
+import { useParams } from "next/navigation";
 
 /** These menu items will be available in a logged-out experience */
 const publicMenuItems = [
@@ -52,19 +63,14 @@ const publicMenuItems = [
         },
     },
     {
-        title: "About",
-        // url: APWRoutes.About.pathname,
-        icon: About,
+        title: "Favorites",
+        url: APWRoutes.About.pathname,
+        icon: Favorites,
+        meta: {
+            description:
+                "This is the favorites page for the user to see their favorite pets from the adoption page. This view will require a logged in experience.",
+        },
     },
-    // {
-    //     title: "Marketplace",
-    //     url: "#",
-    //     icon: Marketplace,
-    //     meta: {
-    //         description:
-    //             "This is the marketplace page for the user to see the products and services available for pets.",
-    //     },
-    // },
 ];
 
 /** These menu items will only be available in a logged-in experience */
@@ -128,6 +134,76 @@ const socialAccountItems = {
     ],
 };
 
+const footerItems = [
+    {
+        title: "Settings",
+        url: "#",
+        icon: Settings,
+        meta: {
+            description:
+                "This is the settings page for the user to manage their account settings.",
+        },
+    },
+    {
+        title: "About",
+        url: "#",
+        icon: About,
+        meta: {
+            description:
+                "This is the about page for the user to learn more about the application.",
+        },
+    },
+];
+
+const AppSidebarFooter = () => {
+    const [isOpen, setIsOpen] = useState(true);
+    const { pathname } = useParams();
+
+    return (
+        <SidebarFooter className="ml-4">
+            <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+                <CollapsibleTrigger asChild>
+                    <SidebarMenuButton
+                        onClick={() => setIsOpen((prev) => !prev)}
+                        className="flex"
+                    >
+                        <span className="sr-only">Toggle</span>
+                        <div className="flex w-full pr-4 py-4">
+                            <ListCollapse />
+                            <ChevronsUpDown className="h-4 w-4 ml-auto" />
+                        </div>
+                    </SidebarMenuButton>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                    {footerItems.map((item) => (
+                        <SidebarMenuButton
+                            key={item.title}
+                            asChild
+                            className="[&_svg]:size-6"
+                        >
+                            <a href={item.url}>
+                                <item.icon className="mr-2" />
+                                <span className="text-base my-8 font-semibold">
+                                    {item.title}
+                                </span>
+                            </a>
+                        </SidebarMenuButton>
+                    ))}
+                </CollapsibleContent>
+                <div className=" mt-8 flex items-center justify-center">
+                    <span className="text-[0.625rem]">
+                        {"© 2024 A Pet's World"}
+                    </span>
+                </div>
+            </Collapsible>
+        </SidebarFooter>
+    );
+};
+
+/**
+ * The AppSidebar component is the main sidebar for the application. It will contain the main navigation for the application.
+ * This sidebar is be collapsible down to Icons and has a footer with additional links.
+ */
 export const AppSidebar = (): ReactElement => {
     const isMobile = useIsMobile();
     const { state } = useSidebar();
@@ -217,28 +293,8 @@ export const AppSidebar = (): ReactElement => {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
-            <SidebarFooter className="p-5">
-                {/* TODO: comment in below if we want to work on a settings popup */}
-                {/* {footerItems.map((item) => (
-                    <SidebarMenuButton
-                        key={item.title}
-                        asChild
-                        className="[&_svg]:size-6"
-                    >
-                        <a href={item.url}>
-                            <item.icon className="mr-2" />
-                            <span className="text-base my-8 font-semibold">
-                                {item.title}
-                            </span>
-                        </a>
-                    </SidebarMenuButton>
-                ))} */}
-                <div className=" mt-8 flex items-center justify-center">
-                    <span className="text-[0.625rem]">
-                        {"© 2024 A Pet's World"}
-                    </span>
-                </div>
-            </SidebarFooter>
+            <Separator className="my-4" />
+            <AppSidebarFooter />
         </Sidebar>
     );
 };

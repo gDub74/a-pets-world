@@ -11,9 +11,7 @@ export const AppHeader = (): ReactElement => {
             <div className="sticky top-0 z-50 w-full flex items-center">
                 <SidebarTrigger />
                 <div className="ml-auto flex items-center">
-                    <span className="">
-                        <ModeToggleButton />
-                    </span>
+                    <ModeToggleButton className="mr-2" />
                     <span className="mt-1 mr-1">
                         <UserButton />
                     </span>

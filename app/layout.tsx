@@ -47,9 +47,6 @@ export default function RootLayout({
                                     <AppHeader />
                                     {children}
                                 </main>
-                                {/* <footer>
-                    <p>Footer Stuff can go here</p>
-                    </footer> */}
                             </SidebarProvider>
                         </SignedIn>
                     </ThemeProvider>

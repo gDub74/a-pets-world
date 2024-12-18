@@ -7,12 +7,13 @@ import {
     ChartLegend,
     ChartLegendContent,
 } from "@/components/ui/chart";
-import { Info, SquareArrowRight } from "lucide-react";
+import { SquareArrowRight } from "lucide-react";
 
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 import { ReactElement } from "react";
 import { HeadingTypography } from "../typography/heading";
 import { Link } from "../ui/link";
+import { InfoTooltip } from "../ui/info-tooltip";
 
 const animalHumaneSocietyPetOwnershipData = [
     { owner: "Animal Shelter/Humane Society", dog: 0.23, cat: 0.31 },
@@ -41,6 +42,25 @@ export const ASPCAPetStatistics = (): ReactElement => {
             <p className="text-base mb-8">
                 The following chart shows the percentage of pet ownership by
                 acquisition source from 2019.
+                <InfoTooltip>
+                    <p className="text-base inline-flex flex-wrap max-w-[500px]">
+                        {
+                            "According to the APPA, these are the most common sources from which primary methods cats and dogs are obtained as pets (Note: this information was based on a multiple response question, which results in the total % exceeding 100% individually for cats and dogs.  In addition, the ‘other’ category includes all source categories that were reported by <10% of both dog and cat owners)"
+                        }
+
+                        <Link
+                            href="https://www.aspca.org/helping-people-pets/shelter-intake-and-surrender/pet-statistics"
+                            variant="asButton"
+                            size="sm"
+                            className="ml-auto max-h-fit"
+                            target="blank"
+                            rel="noopener noreferrer"
+                        >
+                            ...read more ASPCA
+                            <SquareArrowRight size="18" className="ml-1" />
+                        </Link>
+                    </p>
+                </InfoTooltip>
             </p>
             <ChartContainer config={chartConfig} className="w-full">
                 <BarChart
@@ -61,7 +81,7 @@ export const ASPCAPetStatistics = (): ReactElement => {
                     <Bar dataKey="cat" fill="var(--color-cat)" radius={4} />
                 </BarChart>
             </ChartContainer>
-            <div className="my-4 flex">
+            {/* <div className="my-4 flex">
                 <p className="text-l">
                     <Info
                         className="mr-1  inline"
@@ -83,7 +103,7 @@ export const ASPCAPetStatistics = (): ReactElement => {
                         </Link>
                     </span>
                 </p>
-            </div>
+            </div> */}
         </article>
     );
 };

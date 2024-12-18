@@ -9,8 +9,8 @@ import {
     HeartHandshake as Adopt,
     SquareUserRound as Profile,
     Bell as Notifications,
-    Store as Marketplace,
     Blend as Community,
+    IdCard as About,
 } from "lucide-react";
 import pluralize from "pluralize";
 
@@ -29,11 +29,13 @@ import {
 import { Badge } from "./ui/badge";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Separator } from "./ui/separator";
+import { APWRoutes } from "@/lib/APWRoutes";
 
+/** These menu items will be available in a logged-out experience */
 const publicMenuItems = [
     {
         title: "Adopt",
-        url: "#",
+        url: APWRoutes.Adopt.pathname,
         icon: Adopt,
         meta: {
             description:
@@ -42,7 +44,7 @@ const publicMenuItems = [
     },
     {
         title: "Dashboard",
-        url: "#",
+        url: APWRoutes.Dashboard.pathname,
         icon: Dashboard,
         meta: {
             description:
@@ -50,16 +52,22 @@ const publicMenuItems = [
         },
     },
     {
-        title: "Marketplace",
-        url: "#",
-        icon: Marketplace,
-        meta: {
-            description:
-                "This is the marketplace page for the user to see the products and services available for pets.",
-        },
+        title: "About",
+        // url: APWRoutes.About.pathname,
+        icon: About,
     },
+    // {
+    //     title: "Marketplace",
+    //     url: "#",
+    //     icon: Marketplace,
+    //     meta: {
+    //         description:
+    //             "This is the marketplace page for the user to see the products and services available for pets.",
+    //     },
+    // },
 ];
 
+/** These menu items will only be available in a logged-in experience */
 const socialAccountItems = {
     title: "Social",
     url: "#",
@@ -119,18 +127,6 @@ const socialAccountItems = {
         },
     ],
 };
-
-// const footerItems = [
-//     {
-//         title: "Settings",
-//         url: "#",
-//         icon: Settings,
-//         meta: {
-//             description:
-//                 "This is the settings page for the user to manage their account settings.",
-//         },
-//     },
-// ];
 
 export const AppSidebar = (): ReactElement => {
     const isMobile = useIsMobile();

@@ -30,7 +30,7 @@ export const ModeToggleButton = ({
 
     const renderIcon = () => {
         if (theme && theme === "dark") {
-            return <Moon color="white" className="h-[1rem] w-[1rem] " />;
+            return <Moon color="white" className="h-[1rem] w-[1rem]" />;
         }
 
         return <Sun className="h-[1rem] w-[1rem]" />;

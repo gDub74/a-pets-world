@@ -3,16 +3,17 @@
 import { SignInButton } from "@clerk/nextjs";
 import { ReactElement } from "react";
 import { Button } from "./ui/button";
+import { HeadingTypography } from "./typography/heading";
 
 const SignedOutWelcomeMessage = (): ReactElement => {
     return (
         <div className="items-center justify-items-center p-10">
-            <h1 className="my-8">
+            <HeadingTypography variant="h1" className="my-8">
                 {"Welcome to A Pet's World, we're so happy you stopped by!"}
-            </h1>
-            <h2 className="my-2">
+            </HeadingTypography>
+            <HeadingTypography variant="h2" className="my-2">
                 {"Sign in to find and follow all of your favorite pets."}
-            </h2>
+            </HeadingTypography>
         </div>
     );
 };

@@ -35,7 +35,7 @@ export interface LinkProps
     size?: "sm" | "md" | "lg";
 }
 
-export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
+const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
     ({ className, variant, size, asChild = false, ...props }, ref) => {
         const Comp = asChild ? Slot : "a";
         return (
@@ -49,3 +49,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
         );
     },
 );
+
+Link.displayName = "Link";
+
+export { Link, linkVariants };

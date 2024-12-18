@@ -3,7 +3,7 @@ import React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 
-const typographyVariants = cva("font-bold", {
+const headingTypographyVariants = cva("font-bold", {
     variants: {
         variant: {
             h1: "text-2xl mb-4",
@@ -25,16 +25,20 @@ export interface HeadingTypographyProps
     variant?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
 
-export const HeadingTypography = React.forwardRef<
+const HeadingTypography = React.forwardRef<
     HTMLHeadingElement,
     HeadingTypographyProps
 >(({ className, variant, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : (variant ?? "h1");
     return (
         <Comp
-            className={cn(typographyVariants({ variant, className }))}
+            className={cn(headingTypographyVariants({ variant, className }))}
             ref={ref}
             {...props}
         />
     );
 });
+
+HeadingTypography.displayName = "HeadingTypography";
+
+export { HeadingTypography, headingTypographyVariants };

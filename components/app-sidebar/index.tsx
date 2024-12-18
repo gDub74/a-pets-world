@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
 import {
     Newspaper as Feed,
     Inbox,
@@ -10,18 +10,13 @@ import {
     SquareUserRound as Profile,
     Bell as Notifications,
     Blend as Community,
-    IdCard as About,
     BookHeart as Favorites,
-    Settings,
-    ChevronsUpDown,
-    ListCollapse,
 } from "lucide-react";
 import pluralize from "pluralize";
 
 import {
     Sidebar,
     SidebarContent,
-    SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
@@ -30,17 +25,11 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar";
-import { Badge } from "./ui/badge";
+import { Badge } from "../ui/badge";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Separator } from "./ui/separator";
+import { Separator } from "../ui/separator";
 import { APWRoutes } from "@/lib/APWRoutes";
-import {
-    Collapsible,
-    CollapsibleContent,
-    CollapsibleTrigger,
-} from "./ui/collapsible";
-import { Button } from "./ui/button";
-import { useParams } from "next/navigation";
+import { AppSidebarFooter } from "./sidebar-footer";
 
 /** These menu items will be available in a logged-out experience */
 const publicMenuItems = [
@@ -132,72 +121,6 @@ const socialAccountItems = {
             },
         },
     ],
-};
-
-const footerItems = [
-    {
-        title: "Settings",
-        url: "#",
-        icon: Settings,
-        meta: {
-            description:
-                "This is the settings page for the user to manage their account settings.",
-        },
-    },
-    {
-        title: "About",
-        url: "#",
-        icon: About,
-        meta: {
-            description:
-                "This is the about page for the user to learn more about the application.",
-        },
-    },
-];
-
-const AppSidebarFooter = () => {
-    const [isOpen, setIsOpen] = useState(true);
-    const { pathname } = useParams();
-
-    return (
-        <SidebarFooter className="ml-4">
-            <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-                <CollapsibleTrigger asChild>
-                    <SidebarMenuButton
-                        onClick={() => setIsOpen((prev) => !prev)}
-                        className="flex"
-                    >
-                        <span className="sr-only">Toggle</span>
-                        <div className="flex w-full pr-4 py-4">
-                            <ListCollapse />
-                            <ChevronsUpDown className="h-4 w-4 ml-auto" />
-                        </div>
-                    </SidebarMenuButton>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                    {footerItems.map((item) => (
-                        <SidebarMenuButton
-                            key={item.title}
-                            asChild
-                            className="[&_svg]:size-6"
-                        >
-                            <a href={item.url}>
-                                <item.icon className="mr-2" />
-                                <span className="text-base my-8 font-semibold">
-                                    {item.title}
-                                </span>
-                            </a>
-                        </SidebarMenuButton>
-                    ))}
-                </CollapsibleContent>
-                <div className=" mt-8 flex items-center justify-center">
-                    <span className="text-[0.625rem]">
-                        {"© 2024 A Pet's World"}
-                    </span>
-                </div>
-            </Collapsible>
-        </SidebarFooter>
-    );
 };
 
 /**
@@ -294,7 +217,7 @@ export const AppSidebar = (): ReactElement => {
                 </SidebarGroup>
             </SidebarContent>
             <Separator className="my-4" />
-            <AppSidebarFooter />
+            <AppSidebarFooter state={state} />
         </Sidebar>
     );
 };

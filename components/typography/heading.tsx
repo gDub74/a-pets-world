@@ -7,9 +7,9 @@ const headingTypographyVariants = cva("font-bold", {
     variants: {
         variant: {
             h1: "text-2xl mb-4",
-            h2: "text-3xl mb-4",
-            h3: "text-2xl mb-3",
-            h4: "text-xl mb-2",
+            h2: "text-xl mb-4",
+            h3: "text-xl mb-3",
+            h4: "text-lg mb-2",
             h5: "text-lg mb-2 font-semibold",
             h6: "text-base mb-2n font-semibold",
         },

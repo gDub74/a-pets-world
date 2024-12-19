@@ -232,10 +232,8 @@ export const AppSidebar = (): ReactElement => {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
-            <SignedIn>
-                <Separator className="my-4" />
-                <AppSidebarFooter />
-            </SignedIn>
+            <Separator className="my-4" />
+            <AppSidebarFooter state={state} />
         </Sidebar>
     );
 };

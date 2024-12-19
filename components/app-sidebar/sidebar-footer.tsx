@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SidebarFooter, SidebarMenuButton } from "../ui/sidebar";
+import { SidebarFooter, SidebarMenuButton, SidebarState } from "../ui/sidebar";
 import {
     Collapsible,
     CollapsibleContent,
@@ -31,7 +31,7 @@ const footerItems = [
     },
 ];
 
-export const AppSidebarFooter = () => {
+export const AppSidebarFooter = ({ state }: { state: SidebarState }) => {
     const [isOpen, setIsOpen] = useState(true);
     const pathname = usePathname();
 
@@ -44,7 +44,9 @@ export const AppSidebarFooter = () => {
                         className="flex mb-1"
                     >
                         <span className="sr-only">Toggle</span>
-                        <ChevronsUpDown className="h-4 w-4 ml-auto" />
+                        <ChevronsUpDown
+                            className={`h-4 w-4 ${state === "expanded" ? "ml-auto" : undefined}`}
+                        />
                     </SidebarMenuButton>
                 </CollapsibleTrigger>
                 <CollapsibleContent>

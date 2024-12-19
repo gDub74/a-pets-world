@@ -1,6 +1,6 @@
 import { PageLayout } from "@/components/app-page-layout";
 
-export default function DashboardLayout({
+export default function CommunityLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;

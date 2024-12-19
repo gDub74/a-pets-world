@@ -1,11 +1,11 @@
 "use client";
 
 import { SignInButton } from "@clerk/nextjs";
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import { Button } from "./ui/button";
 import { HeadingTypography } from "./typography/heading";
 
-const SignedOutWelcomeMessage = (): ReactElement => {
+const SignedUpWelcomeMessage = (): ReactElement => {
     return (
         <div className="items-center justify-items-center p-10">
             <HeadingTypography variant="h1" className="my-8">
@@ -18,9 +18,13 @@ const SignedOutWelcomeMessage = (): ReactElement => {
     );
 };
 
-export const AppRootSignIn = (): ReactElement => (
-    <div className="flex flex-col justify-center items-center h-screen">
-        <SignedOutWelcomeMessage />
+export const AppSignIn = ({
+    message,
+}: {
+    message?: ReactNode;
+}): ReactElement => (
+    <div className="flex flex-col items-center h-screen">
+        {message ? message : <SignedUpWelcomeMessage />}
         <SignInButton mode="modal">
             {/* Wrapping our own button is the suggested way of styling the unstyled SignInButton component from Clark. */}
             <Button>Sign In</Button>

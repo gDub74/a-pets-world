@@ -81,29 +81,6 @@ export const ASPCAPetStatistics = (): ReactElement => {
                     <Bar dataKey="cat" fill="var(--color-cat)" radius={4} />
                 </BarChart>
             </ChartContainer>
-            {/* <div className="my-4 flex">
-                <p className="text-l">
-                    <Info
-                        className="mr-1  inline"
-                        fill="hsl(var(--info))"
-                        stroke={"hsl(var(--primary-foreground))"}
-                    />
-                    {
-                        "According to the APPA, these are the most common sources from which primary methods cats and dogs are obtained as pets (Note: this information was based on a multiple response question, which results in the total % exceeding 100% individually for cats and dogs.  In addition, the ‘other’ category includes all source categories that were reported by <10% of both dog and cat owners)"
-                    }
-                    <span className="ml-2">
-                        <Link
-                            href="https://www.aspca.org/helping-people-pets/shelter-intake-and-surrender/pet-statistics"
-                            variant="asButton"
-                            size="sm"
-                            className="ml-2 max-h-fit"
-                        >
-                            ...read more ASPCA
-                            <SquareArrowRight size="18" className="ml-1" />
-                        </Link>
-                    </span>
-                </p>
-            </div> */}
         </article>
     );
 };

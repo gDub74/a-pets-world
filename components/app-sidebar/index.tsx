@@ -32,6 +32,7 @@ import { APWRoutes } from "@/lib/APWRoutes";
 import { AppSidebarFooter } from "./sidebar-footer";
 import { usePathname } from "next/navigation";
 import { buildSelectedMenuitemBackgroundColor } from "./util";
+import { SignedIn } from "@clerk/nextjs";
 
 /** These menu items will be available in a logged-out experience */
 const publicMenuItems = [
@@ -54,12 +55,12 @@ const publicMenuItems = [
         },
     },
     {
-        title: "Favorites",
-        pathname: APWRoutes.About.pathname,
-        icon: Favorites,
+        title: "Community",
+        pathname: APWRoutes.Community.pathname,
+        icon: Community,
         meta: {
             description:
-                "This is the favorites page for the user to see their favorite pets from the adoption page. This view will require a logged in experience.",
+                "This is the community feed for the user to see and comment on community specific posts -- based on location/city posts and updates.",
         },
     },
 ];
@@ -93,12 +94,12 @@ const socialAccountItems = {
             },
         },
         {
-            title: "Community",
-            pathname: APWRoutes.Community.pathname,
-            icon: Community,
+            title: "Favorites",
+            pathname: APWRoutes.Favorites.pathname,
+            icon: Favorites,
             meta: {
                 description:
-                    "This is the community feed for the user to see and comment on community specific posts -- based on location/city posts and updates.",
+                    "This is the favorites page for the user to see their favorite pets from the adoption page. This view will require a logged in experience.",
             },
         },
         {
@@ -208,7 +209,10 @@ export const AppSidebar = (): ReactElement => {
                                                 {item.title}
                                                 {state === "expanded" &&
                                                 item?.meta?.count ? (
-                                                    <Badge variant="notify">
+                                                    <Badge
+                                                        variant="notify"
+                                                        className="top-0.5"
+                                                    >
                                                         {item.meta.count}
                                                         <span className="sr-only">
                                                             {pluralize(
@@ -228,8 +232,10 @@ export const AppSidebar = (): ReactElement => {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
-            <Separator className="my-4" />
-            <AppSidebarFooter />
+            <SignedIn>
+                <Separator className="my-4" />
+                <AppSidebarFooter />
+            </SignedIn>
         </Sidebar>
     );
 };

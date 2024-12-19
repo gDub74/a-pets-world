@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import { Mulish } from "next/font/google";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
-import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import { AppHeader } from "@/components/app-header";
-import { AppRootSignIn } from "@/components/app-root-sign-in";
 
 const mulish = Mulish({
     subsets: ["latin"],
@@ -37,18 +36,13 @@ export default function RootLayout({
                         enableSystem
                         disableTransitionOnChange
                     >
-                        <SignedOut>
-                            <AppRootSignIn />
-                        </SignedOut>
-                        <SignedIn>
-                            <SidebarProvider>
-                                <AppSidebar />
-                                <main className="w-full min-h-screen">
-                                    <AppHeader />
-                                    {children}
-                                </main>
-                            </SidebarProvider>
-                        </SignedIn>
+                        <SidebarProvider>
+                            <AppSidebar />
+                            <main className="w-full min-h-screen">
+                                <AppHeader />
+                                {children}
+                            </main>
+                        </SidebarProvider>
                     </ThemeProvider>
                 </body>
             </html>

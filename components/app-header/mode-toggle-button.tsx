@@ -33,11 +33,11 @@ export const ModeToggleButton = ({
             return <Moon color="white" className="h-[1rem] w-[1rem]" />;
         }
 
-        return <Sun className="h-[1rem] w-[1rem]" />;
+        return <Sun className="h-4 w-4" />;
     };
 
     if (!isClient) {
-        return null;
+        return <Sun className="h-4 w-4 mr-4" />;
     }
 
     return (

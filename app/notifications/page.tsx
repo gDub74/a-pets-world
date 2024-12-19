@@ -1,7 +1,7 @@
 "use client";
 
 import { AppSignIn } from "@/components/app-sign-in";
-import { HeadingTypography } from "@/components/typography/heading";
+import { HeadingTypography } from "@/components/ui/typography/heading";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 export default function Favorites() {

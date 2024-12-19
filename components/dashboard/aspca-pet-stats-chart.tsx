@@ -11,7 +11,7 @@ import { SquareArrowRight } from "lucide-react";
 
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 import { ReactElement } from "react";
-import { HeadingTypography } from "../typography/heading";
+import { HeadingTypography } from "../ui/typography/heading";
 import { Link } from "../ui/link";
 import { InfoTooltip } from "../ui/info-tooltip";
 

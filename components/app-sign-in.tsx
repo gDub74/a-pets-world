@@ -3,7 +3,7 @@
 import { SignInButton } from "@clerk/nextjs";
 import { ReactElement, ReactNode } from "react";
 import { Button } from "./ui/button";
-import { HeadingTypography } from "./typography/heading";
+import { HeadingTypography } from "./ui/typography/heading";
 
 const SignedUpWelcomeMessage = (): ReactElement => {
     return (

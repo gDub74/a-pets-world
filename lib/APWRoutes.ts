@@ -52,4 +52,8 @@ export class APWRoutes {
     static SignUp = {
         pathname: "/sign-up",
     };
+
+    static TermsAndConditions = {
+        pathname: "/terms-and-conditions",
+    };
 }

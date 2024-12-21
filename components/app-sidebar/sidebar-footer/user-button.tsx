@@ -1,9 +1,18 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { SignInButton, useUser } from "@clerk/nextjs";
+import { SidebarState } from "@/components/ui/sidebar";
+import {
+    SignInButton,
+    useUser,
+    UserButton as UserAvatarButton,
+} from "@clerk/nextjs";
 
-export const UserButton = () => {
+export const UserButton = ({
+    sidebarState,
+}: {
+    sidebarState: SidebarState;
+}) => {
     const { isLoaded, user } = useUser();
 
     if (!isLoaded) return null;
@@ -15,5 +24,21 @@ export const UserButton = () => {
             </SignInButton>
         );
 
-    return <p>signed in...</p>;
+    return (
+        <div className="flex items-center pl-1">
+            <span className="mr-3 mt-1">
+                <UserAvatarButton />
+            </span>
+            {sidebarState === "expanded" ? (
+                <div>
+                    <span className="block text-sm font-semibold">
+                        {user.fullName}
+                    </span>
+                    <span className="block text-xs text-text-secondary">
+                        online
+                    </span>
+                </div>
+            ) : null}
+        </div>
+    );
 };

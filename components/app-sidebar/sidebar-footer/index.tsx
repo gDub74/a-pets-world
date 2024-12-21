@@ -39,11 +39,11 @@ const footerItems = [
                 "This is the about page for the user to learn more about the application.",
         },
     },
-    {
-        title: "Terms and Conditions",
-        pathname: APWRoutes.TermsAndConditions.pathname,
-        icon: ReceiptText,
-    },
+    // {
+    //     title: "Terms and Conditions",
+    //     pathname: APWRoutes.TermsAndConditions.pathname,
+    //     icon: ReceiptText,
+    // },
 ];
 
 export const AppSidebarFooter = ({ state }: { state: SidebarState }) => {
@@ -55,7 +55,7 @@ export const AppSidebarFooter = ({ state }: { state: SidebarState }) => {
                 className="group/collapsible"
                 defaultOpen={state === "expanded"}
             >
-                <CollapsibleTrigger className="w-full">
+                <CollapsibleTrigger className="flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:w-[2.425rem] group-data-[collapsible=icon]:!p-2 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-8 text-sm">
                     <div className="flex items-center w-full text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
                         <Ellipsis />
                         <span className="sr-only">
@@ -69,7 +69,7 @@ export const AppSidebarFooter = ({ state }: { state: SidebarState }) => {
                         ) : null}
                     </div>
                 </CollapsibleTrigger>
-                <CollapsibleContent className="mt-4">
+                <CollapsibleContent className="mt-4 collapsibleContent">
                     {state === "expanded" ? (
                         <div className="flex items-center">
                             <Settings size="18" className="mr-2" />
@@ -100,7 +100,7 @@ export const AppSidebarFooter = ({ state }: { state: SidebarState }) => {
                     </SidebarGroup>
 
                     {state === "expanded" ? (
-                        <div className="flex items-center mt-4">
+                        <div className="flex items-center mt-10">
                             <AsteriskSquare size="18" className="mr-2" />
                             <HeadingTypography variant="h6" className="text-xs">
                                 Info
@@ -132,7 +132,6 @@ export const AppSidebarFooter = ({ state }: { state: SidebarState }) => {
                     </SidebarGroup>
                 </CollapsibleContent>
             </Collapsible>
-
             <div className=" mt-8 flex items-center justify-center">
                 <span className="text-[0.625rem]">
                     {"© 2024 A Pet's World"}

@@ -25,7 +25,7 @@ export const UserButton = ({
         );
 
     return (
-        <div className="flex items-center pl-1">
+        <div className="flex items-center pl-1 mt-2">
             <span className="mr-3 mt-1">
                 <UserAvatarButton />
             </span>

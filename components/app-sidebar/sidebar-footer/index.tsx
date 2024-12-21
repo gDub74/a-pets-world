@@ -26,6 +26,8 @@ import {
     Collapsible,
     CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { ModeToggleGroupButton } from "../../mode-button/mode-toggle-group";
+import { ModeToggleButton } from "@/components/mode-button/mode-toggle-button";
 
 const footerItems = [
     {
@@ -56,6 +58,9 @@ export const AppSidebarFooter = ({ state }: { state: SidebarState }) => {
                 <CollapsibleTrigger className="w-full">
                     <div className="flex items-center w-full text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
                         <Ellipsis />
+                        <span className="sr-only">
+                            Settings and additional info
+                        </span>
                         {state === "expanded" ? (
                             <ChevronRight
                                 stroke={"hsl(var(--primary))"}
@@ -76,10 +81,22 @@ export const AppSidebarFooter = ({ state }: { state: SidebarState }) => {
                     ) : null}
                     <SidebarSeparator className="mt-2 ml-[-1rem]" />
                     <SidebarGroup
-                        title="User Settings and Profile Management"
                         className={`${state === "collapsed" ? "ml-[-1rem]" : ""}`}
                     >
                         <UserButton sidebarState={state} />
+                        {state === "expanded" ? (
+                            <div className="inline-flex items-center mt-4">
+                                <span
+                                    id="toggle-theme"
+                                    className="text-xs mr-2"
+                                >
+                                    Theme:
+                                </span>
+                                <ModeToggleGroupButton aria-labelledby="toggle-theme" />
+                            </div>
+                        ) : (
+                            <ModeToggleButton hideLabel className="ml-1" />
+                        )}
                     </SidebarGroup>
 
                     {state === "expanded" ? (

@@ -1,6 +1,26 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-export default clerkMiddleware();
+const isProtectedRoute = createRouteMatcher([
+    `/profile(.*)`,
+    `/feed(.*)`,
+    `/favorites(.*)`,
+    `/messages(.*)`,
+    `/notifications(.*)`,
+]);
+
+export default clerkMiddleware(
+    async (auth, req) => {
+        if (isProtectedRoute(req)) {
+            await auth.protect();
+        }
+    },
+    {
+        authorizedParties: [
+            "http://localhost:3000",
+            // add route here when setting up the production domain
+        ],
+    },
+);
 
 export const config = {
     matcher: [

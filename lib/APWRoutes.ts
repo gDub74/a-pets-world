@@ -44,4 +44,16 @@ export class APWRoutes {
     static Settings = {
         pathname: "/settings",
     };
+
+    static SignIn = {
+        pathname: "/sign-in",
+    };
+
+    static SignUp = {
+        pathname: "/sign-up",
+    };
+
+    static TermsAndConditions = {
+        pathname: "/terms-and-conditions",
+    };
 }

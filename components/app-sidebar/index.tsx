@@ -32,7 +32,6 @@ import { APWRoutes } from "@/lib/APWRoutes";
 import { AppSidebarFooter } from "./sidebar-footer";
 import { usePathname } from "next/navigation";
 import { buildSelectedMenuitemBackgroundColor } from "./util";
-import { SignedIn } from "@clerk/nextjs";
 
 /** These menu items will be available in a logged-out experience */
 const publicMenuItems = [
@@ -232,10 +231,8 @@ export const AppSidebar = (): ReactElement => {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
-            <SignedIn>
-                <Separator className="my-4" />
-                <AppSidebarFooter />
-            </SignedIn>
+            <Separator className="my-4" />
+            <AppSidebarFooter state={state} />
         </Sidebar>
     );
 };

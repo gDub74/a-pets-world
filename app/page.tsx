@@ -1,6 +1,6 @@
 "use client";
 
-import { HeadingTypography } from "@/components/typography/heading";
+import { HeadingTypography } from "@/components/ui/typography/heading";
 
 export default function Home() {
     return (

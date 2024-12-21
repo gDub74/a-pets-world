@@ -1,5 +1,11 @@
-import { ReactNode } from "react";
+import { cn } from "@/lib/utils";
+import { HTMLAttributes } from "react";
 
-export const PageLayout = ({ children }: { children: ReactNode }) => (
-    <div className="p-10">{children}</div>
-);
+export const PageLayout = (props: HTMLAttributes<HTMLDivElement>) => {
+    const { className, children, ...restProps } = props;
+    return (
+        <div className={cn("p-10", className)} {...restProps}>
+            {children}
+        </div>
+    );
+};

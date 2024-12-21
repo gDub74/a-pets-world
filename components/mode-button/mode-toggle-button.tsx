@@ -43,6 +43,7 @@ export const ModeToggleButton = ({
 
     return (
         <Button
+            title={`${theme} mode`}
             variant="ghost"
             size="icon"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -54,6 +55,7 @@ export const ModeToggleButton = ({
                     <label className="text-sm mr-1">Toggle Theme</label>
                 )}
                 {renderIcon()}
+                <span className="sr-only">Toggle Theme</span>
             </div>
         </Button>
     );

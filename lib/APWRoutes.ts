@@ -29,6 +29,10 @@ export class APWRoutes {
         pathname: "/feed",
     };
 
+    static Merchandise = {
+        pathname: "/merchandise",
+    };
+
     static Messages = {
         pathname: "/messages",
     };

@@ -283,29 +283,23 @@ const SidebarTrigger = React.forwardRef<
     const { toggleSidebar } = useSidebar();
 
     return (
-        <TooltipProvider>
-            <Tooltip>
-                <TooltipTrigger asChild>
-                    <Button
-                        ref={ref}
-                        data-sidebar="trigger"
-                        variant="ghost"
-                        size="icon"
-                        className={cn("h-7 w-7", className)}
-                        onClick={(event) => {
-                            onClick?.(event);
-                            toggleSidebar();
-                        }}
-                        {...props}
-                    >
-                        <PanelLeft />
-                    </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                    <p>Toggle Sidebar</p>
-                </TooltipContent>
-            </Tooltip>
-        </TooltipProvider>
+        <>
+            <Button
+                ref={ref}
+                data-sidebar="trigger"
+                variant="ghost"
+                size="icon"
+                className={cn("h-7 w-7", className)}
+                onClick={(event) => {
+                    onClick?.(event);
+                    toggleSidebar();
+                }}
+                {...props}
+            >
+                <PanelLeft />
+                <span className="sr-only">Toggle -- Sidebar</span>
+            </Button>
+        </>
     );
 });
 SidebarTrigger.displayName = "SidebarTrigger";
@@ -467,7 +461,7 @@ const SidebarGroupLabel = React.forwardRef<
             ref={ref}
             data-sidebar="group-label"
             className={cn(
-                "duration-200 flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/70 outline-none ring-sidebar-ring transition-[margin,opa] ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+                "duration-200 flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/80 outline-none ring-sidebar-ring transition-[margin,opa] ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
                 "group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0",
                 className,
             )}

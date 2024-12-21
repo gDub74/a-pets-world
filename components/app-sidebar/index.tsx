@@ -23,6 +23,7 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
+    SidebarSeparator,
     useSidebar,
 } from "@/components/ui/sidebar";
 import { Badge } from "../ui/badge";
@@ -231,7 +232,7 @@ export const AppSidebar = (): ReactElement => {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
-            <Separator className="my-4" />
+            <SidebarSeparator className="mt-2" />
             <AppSidebarFooter state={state} />
         </Sidebar>
     );

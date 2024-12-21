@@ -8,7 +8,7 @@ import {
     UserButton as UserAvatarButton,
 } from "@clerk/nextjs";
 
-export const UserButton = ({
+export const SidebarUserButton = ({
     sidebarState,
 }: {
     sidebarState: SidebarState;
@@ -34,7 +34,7 @@ export const UserButton = ({
                     <span className="block text-sm font-semibold">
                         {user.fullName}
                     </span>
-                    <span className="block text-xs text-text-secondary">
+                    <span className="block text-xs text-text-secondary text-success">
                         online
                     </span>
                 </div>

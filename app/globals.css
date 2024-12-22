@@ -30,7 +30,7 @@ body {
         --accent-foreground: 24 9.8% 10%;
         --destructive: 0 84.2% 60.2%;
         --destructive-foreground: 60 9.1% 97.8%;
-        --success: 123 68% 37%;
+        --success: 120 100% 17%;
         --success-foreground: 60 9.1% 97.8%;
         --border: 20 5.9% 90%;
         --info: 210 100% 50%;
@@ -100,5 +100,33 @@ body {
     }
     body {
         @apply bg-background text-foreground;
+    }
+}
+
+.collapsibleContent {
+    overflow: hidden;
+}
+.collapsibleContent[data-state="open"] {
+    animation: slideDown 200ms ease-out;
+}
+.collapsibleContent[data-state="closed"] {
+    animation: slideUp 200ms ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        height: 0;
+    }
+    to {
+        height: var(--radix-collapsible-content-height);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        height: var(--radix-collapsible-content-height);
+    }
+    to {
+        height: 0;
     }
 }

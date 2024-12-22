@@ -16,7 +16,7 @@ const mulish = Mulish({
 export const metadata: Metadata = {
     title: "A Pet's World",
     description:
-        "A Pet oriented social media app with a Pet Finder based type Adoption feature.",
+        "A Pet oriented social media app with a Pet Finder based Adoption feature.",
 };
 
 export default function RootLayout({

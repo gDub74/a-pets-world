@@ -12,7 +12,6 @@ import {
     ChevronRight,
     ShieldPlus,
     Ellipsis,
-    ShoppingBag,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { APWRoutes } from "@/lib/APWRoutes";
@@ -39,11 +38,11 @@ const footerItems = [
                 "This is the about page for the user to learn more about the application.",
         },
     },
-    {
-        title: "Merchandise",
-        pathname: APWRoutes.Merchandise.pathname,
-        icon: ShoppingBag,
-    },
+    // {
+    //     title: "Support APW",
+    //     pathname: APWRoutes.Merchandise.pathname,
+    //     icon: ShoppingBag,
+    // },
     // {
     //     title: "Terms and Conditions",
     //     pathname: APWRoutes.TermsAndConditions.pathname,
@@ -64,7 +63,7 @@ export const AppSidebarFooter = ({ state }: { state: SidebarState }) => {
                     <div className="flex items-center w-full text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
                         <Ellipsis />
                         <span className="sr-only">
-                            Settings and additional info
+                            Settings and additional Resources
                         </span>
                         {state === "expanded" ? (
                             <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
@@ -97,7 +96,9 @@ export const AppSidebarFooter = ({ state }: { state: SidebarState }) => {
                                 <ModeToggleGroupButton aria-labelledby="toggle-theme" />
                             </div>
                         ) : (
-                            <ModeToggleButton hideLabel className="ml-1" />
+                            <div className="mt-4">
+                                <ModeToggleButton hideLabel className="ml-1" />
+                            </div>
                         )}
                     </SidebarGroup>
 

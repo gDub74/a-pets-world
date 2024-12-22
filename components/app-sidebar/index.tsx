@@ -11,6 +11,7 @@ import {
     Bell as Notifications,
     Blend as Community,
     BookHeart as Favorites,
+    Store,
 } from "lucide-react";
 import pluralize from "pluralize";
 
@@ -63,6 +64,11 @@ const publicMenuItems = [
                 "This is the community feed for the user to see and comment on community specific posts -- based on location/city posts and updates.",
         },
     },
+    {
+        title: "Shop",
+        pathname: APWRoutes.Shop.pathname,
+        icon: Store,
+    },
 ];
 
 /** These menu items will only be available in a logged-in experience */
@@ -102,16 +108,16 @@ const socialAccountItems = {
                     "This is the favorites page for the user to see their favorite pets from the adoption page. This view will require a logged in experience.",
             },
         },
-        {
-            title: "Messages",
-            pathname: APWRoutes.Messages.pathname,
-            icon: Inbox,
-            meta: {
-                description:
-                    "This is the messages page for the user to see their direct private messages.",
-                count: 1, // this will need to be dynamic
-            },
-        },
+        // {
+        //     title: "Messages",
+        //     pathname: APWRoutes.Messages.pathname,
+        //     icon: Inbox,
+        //     meta: {
+        //         description:
+        //             "This is the messages page for the user to see their direct private messages.",
+        //         count: 1, // this will need to be dynamic
+        //     },
+        // },
         {
             title: "Notifications",
             pathname: APWRoutes.Notifications.pathname,
@@ -147,6 +153,7 @@ export const AppSidebar = (): ReactElement => {
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton
                                         asChild
+                                        title={item.title}
                                         className={`[&_svg]:size-6
                                         ${buildSelectedMenuitemBackgroundColor(
                                             pathname,
@@ -180,6 +187,7 @@ export const AppSidebar = (): ReactElement => {
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton
                                         asChild
+                                        title={item.title}
                                         className={`[&_svg]:size-6
                                         ${buildSelectedMenuitemBackgroundColor(
                                             pathname,

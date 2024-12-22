@@ -20,7 +20,9 @@ export const SidebarUserButton = ({
     if (!user?.id)
         return (
             <SignInButton mode="modal">
-                <Button>Sign In</Button>
+                <Button size="sm" className="text-xs">
+                    Sign In
+                </Button>
             </SignInButton>
         );
 

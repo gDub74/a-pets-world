@@ -21,6 +21,10 @@ export class APWRoutes {
         pathname: "/dashboard",
     };
 
+    static Shop = {
+        pathname: "/shop",
+    };
+
     static Favorites = {
         pathname: "/favorites",
     };
@@ -31,10 +35,6 @@ export class APWRoutes {
 
     static Merchandise = {
         pathname: "/merchandise",
-    };
-
-    static Messages = {
-        pathname: "/messages",
     };
 
     static Notifications = {

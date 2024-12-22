@@ -3,7 +3,6 @@
 import { ReactElement } from "react";
 import {
     Newspaper as Feed,
-    Inbox,
     Activity as Social,
     ChartNoAxesColumn as Dashboard,
     HeartHandshake as Adopt,

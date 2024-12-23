@@ -1,10 +1,10 @@
 export class APWRoutes {
-    static Adopt = {
-        pathname: "/",
-    };
-
     static About = {
         pathname: "/about",
+    };
+
+    static Adopt = {
+        pathname: "/",
     };
 
     static Community = {
@@ -21,32 +21,12 @@ export class APWRoutes {
         pathname: "/dashboard",
     };
 
-    static Shop = {
-        pathname: "/shop",
-    };
-
     static Favorites = {
         pathname: "/favorites",
     };
 
-    static Feed = {
-        pathname: "/feed",
-    };
-
-    static Merchandise = {
-        pathname: "/merchandise",
-    };
-
-    static Notifications = {
-        pathname: "/notifications",
-    };
-
     static Profile = {
         pathname: "/profile",
-    };
-
-    static Settings = {
-        pathname: "/settings",
     };
 
     static SignIn = {
@@ -55,9 +35,5 @@ export class APWRoutes {
 
     static SignUp = {
         pathname: "/sign-up",
-    };
-
-    static TermsAndConditions = {
-        pathname: "/terms-and-conditions",
     };
 }

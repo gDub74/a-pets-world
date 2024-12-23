@@ -2,17 +2,12 @@
 
 import { ReactElement } from "react";
 import {
-    Newspaper as Feed,
-    Activity as Social,
     ChartNoAxesColumn as Dashboard,
     HeartHandshake as Adopt,
     SquareUserRound as Profile,
-    Bell as Notifications,
     Blend as Community,
     BookHeart as Favorites,
-    Store,
 } from "lucide-react";
-import pluralize from "pluralize";
 
 import {
     Sidebar,
@@ -28,11 +23,12 @@ import {
 } from "@/components/ui/sidebar";
 import { Badge } from "../ui/badge";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Separator } from "../ui/separator";
+
 import { APWRoutes } from "@/lib/APWRoutes";
 import { AppSidebarFooter } from "./sidebar-footer";
 import { usePathname } from "next/navigation";
 import { buildSelectedMenuitemBackgroundColor } from "./util";
+import pluralize from "pluralize";
 
 /** These menu items will be available in a logged-out experience */
 const publicMenuItems = [
@@ -46,6 +42,34 @@ const publicMenuItems = [
         },
     },
     {
+        title: "Community",
+        pathname: APWRoutes.Community.pathname,
+        icon: Community,
+        meta: {
+            description:
+                "This is the community feed/posts for the user to view and comment on.",
+        },
+    },
+    {
+        title: "Profile",
+        pathname: APWRoutes.Profile.pathname,
+        icon: Profile,
+        meta: {
+            description:
+                "This is the profile page for the user to see their profile information and view and create their posts.",
+            notificationCount: 13, // this will need to be dynamic
+        },
+    },
+    {
+        title: "Favorites",
+        pathname: APWRoutes.Favorites.pathname,
+        icon: Favorites,
+        meta: {
+            description:
+                "This is the favorites page for the user to see their favorite pets from the adoption page. This view will require a logged in experience.",
+        },
+    },
+    {
         title: "Dashboard",
         pathname: APWRoutes.Dashboard.pathname,
         icon: Dashboard,
@@ -54,81 +78,63 @@ const publicMenuItems = [
                 "This is the dashboard page for the user to see pet based charts and data visualizations, trending hashtags.",
         },
     },
-    {
-        title: "Community",
-        pathname: APWRoutes.Community.pathname,
-        icon: Community,
-        meta: {
-            description:
-                "This is the community feed for the user to see and comment on community specific posts -- based on location/city posts and updates.",
-        },
-    },
-    {
-        title: "Shop",
-        pathname: APWRoutes.Shop.pathname,
-        icon: Store,
-    },
+    // {
+    //     title: "Shop",
+    //     pathname: APWRoutes.Shop.pathname,
+    //     icon: Store,
+    // },
 ];
 
 /** These menu items will only be available in a logged-in experience */
-const socialAccountItems = {
-    title: "Social",
-    url: "#",
-    icon: Social,
-    meta: {
-        description:
-            "This is the parent for all social media pages. Social Media requires a user to be signed in.",
-    },
-    children: [
-        {
-            title: "Profile",
-            pathname: APWRoutes.Profile.pathname,
-            icon: Profile,
-            meta: {
-                description:
-                    "This is the profile page for the user to see their profile information and view and create their posts.",
-            },
-        },
-        {
-            title: "Feed",
-            pathname: APWRoutes.Feed.pathname,
-            icon: Feed,
-            meta: {
-                description:
-                    "This is the home page feed for the user to see the latest updates and posts from the community.",
-            },
-        },
-        {
-            title: "Favorites",
-            pathname: APWRoutes.Favorites.pathname,
-            icon: Favorites,
-            meta: {
-                description:
-                    "This is the favorites page for the user to see their favorite pets from the adoption page. This view will require a logged in experience.",
-            },
-        },
-        // {
-        //     title: "Messages",
-        //     pathname: APWRoutes.Messages.pathname,
-        //     icon: Inbox,
-        //     meta: {
-        //         description:
-        //             "This is the messages page for the user to see their direct private messages.",
-        //         count: 1, // this will need to be dynamic
-        //     },
-        // },
-        {
-            title: "Notifications",
-            pathname: APWRoutes.Notifications.pathname,
-            icon: Notifications,
-            meta: {
-                description:
-                    "This is the notifications page for the user to see their notifications.",
-                count: 13, // this will need to be dynamic
-            },
-        },
-    ],
-};
+// const socialAccountItems = {
+//     title: "Social",
+//     url: "#",
+//     icon: Social,
+//     meta: {
+//         description:
+//             "This is the parent for all social media pages. Social Media requires a user to be signed in.",
+//     },
+//     children: [
+//         {
+//             title: "Feed",
+//             pathname: APWRoutes.Feed.pathname,
+//             icon: Feed,
+//             meta: {
+//                 description:
+//                     "This is the home page feed for the user to see the latest updates and posts from the community.",
+//             },
+//         },
+// {
+//     title: "Favorites",
+//     pathname: APWRoutes.Favorites.pathname,
+//     icon: Favorites,
+//     meta: {
+//         description:
+//             "This is the favorites page for the user to see their favorite pets from the adoption page. This view will require a logged in experience.",
+//     },
+// },
+// {
+//     title: "Messages",
+//     pathname: APWRoutes.Messages.pathname,
+//     icon: Inbox,
+//     meta: {
+//         description:
+//             "This is the messages page for the user to see their direct private messages.",
+//         count: 1, // this will need to be dynamic
+//     },
+// },
+// {
+//     title: "Notifications",
+//     pathname: APWRoutes.Notifications.pathname,
+//     icon: Notifications,
+//     meta: {
+//         description:
+//             "This is the notifications page for the user to see their notifications.",
+//         count: 13, // this will need to be dynamic
+//     },
+// },
+//     ],
+// };
 
 /**
  * The AppSidebar component is the main sidebar for the application. It will contain the main navigation for the application.
@@ -162,8 +168,49 @@ export const AppSidebar = (): ReactElement => {
                                     >
                                         <a href={item.pathname}>
                                             <item.icon className="mr-2" />
+                                            {state === "collapsed" &&
+                                            item?.meta?.notificationCount ? (
+                                                <Badge
+                                                    variant="notify"
+                                                    className="left-0.5 top-[0.125rem]"
+                                                >
+                                                    {
+                                                        item.meta
+                                                            .notificationCount
+                                                    }
+                                                    <span className="sr-only">
+                                                        {pluralize(
+                                                            "notification",
+                                                            item.meta
+                                                                .notificationCount,
+                                                            true,
+                                                        )}
+                                                    </span>
+                                                </Badge>
+                                            ) : null}
                                             <span className="text-base my-12 font-semibold">
                                                 {item.title}
+                                                {state === "expanded" &&
+                                                item?.meta
+                                                    ?.notificationCount ? (
+                                                    <Badge
+                                                        variant="notify"
+                                                        className="top-0.5"
+                                                    >
+                                                        {
+                                                            item.meta
+                                                                .notificationCount
+                                                        }
+                                                        <span className="sr-only">
+                                                            {pluralize(
+                                                                "notification",
+                                                                item.meta
+                                                                    .notificationCount,
+                                                                true,
+                                                            )}
+                                                        </span>
+                                                    </Badge>
+                                                ) : null}
                                             </span>
                                         </a>
                                     </SidebarMenuButton>
@@ -172,8 +219,8 @@ export const AppSidebar = (): ReactElement => {
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>
-                <Separator className="my-4" />
-                <SidebarGroup>
+                {/* <Separator className="my-4" /> */}
+                {/* <SidebarGroup>
                     <SidebarGroupLabel className="h-12 text-sm font-bold mb-4 ">
                         {socialAccountItems.title}
                         <span className="ml-2">
@@ -237,7 +284,7 @@ export const AppSidebar = (): ReactElement => {
                             ))}
                         </SidebarMenu>
                     </SidebarGroupContent>
-                </SidebarGroup>
+                </SidebarGroup> */}
             </SidebarContent>
             <SidebarSeparator className="mt-2" />
             <AppSidebarFooter state={state} />

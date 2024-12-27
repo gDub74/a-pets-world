@@ -1,5 +1,3 @@
-"use client";
-
 import { HeadingTypography } from "@/components/ui/typography/heading";
 
 export default function Community() {

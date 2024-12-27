@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/collapsible";
 import { ModeToggleGroupButton } from "../../mode-button/mode-toggle-group";
 import { ModeToggleButton } from "@/components/mode-button/mode-toggle-button";
+import Link from "next/link";
 
 const footerItems = [
     {
@@ -125,12 +126,12 @@ export const AppSidebarFooter = ({ state }: { state: SidebarState }) => {
                                     item.pathname,
                                 )}`}
                             >
-                                <a href={item.pathname}>
+                                <Link href={item.pathname}>
                                     <item.icon className="mr-2" />
                                     <span className="text-xs my-4">
                                         {item.title}
                                     </span>
-                                </a>
+                                </Link>
                             </SidebarMenuButton>
                         ))}
                     </SidebarGroup>

@@ -29,6 +29,7 @@ import { AppSidebarFooter } from "./sidebar-footer";
 import { usePathname } from "next/navigation";
 import { buildSelectedMenuitemBackgroundColor } from "./util";
 import pluralize from "pluralize";
+import Link from "next/link";
 
 /** These menu items will be available in a logged-out experience */
 const publicMenuItems = [
@@ -166,7 +167,7 @@ export const AppSidebar = (): ReactElement => {
                                         )}
                                             `}
                                     >
-                                        <a href={item.pathname}>
+                                        <Link href={item.pathname}>
                                             <item.icon className="mr-2" />
                                             {state === "collapsed" &&
                                             item?.meta?.notificationCount ? (
@@ -212,7 +213,7 @@ export const AppSidebar = (): ReactElement => {
                                                     </Badge>
                                                 ) : null}
                                             </span>
-                                        </a>
+                                        </Link>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
                             ))}

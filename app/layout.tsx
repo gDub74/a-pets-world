@@ -3,9 +3,9 @@ import { Mulish } from "next/font/google";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "@/components/theme-provider";
 
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 
 import { AppHeader } from "@/components/app-header";
 

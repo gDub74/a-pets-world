@@ -12,6 +12,7 @@ import {
     ChevronRight,
     ShieldPlus,
     Ellipsis,
+    SquareFunction,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { APWRoutes } from "@/lib/APWRoutes";
@@ -39,16 +40,11 @@ const footerItems = [
                 "This is the about page for the user to learn more about the application.",
         },
     },
-    // {
-    //     title: "Support APW",
-    //     pathname: APWRoutes.Merchandise.pathname,
-    //     icon: ShoppingBag,
-    // },
-    // {
-    //     title: "Terms and Conditions",
-    //     pathname: APWRoutes.TermsAndConditions.pathname,
-    //     icon:  ,
-    // },
+    {
+        title: "React Dev Fun",
+        pathname: APWRoutes.ReactHooksFun.pathname,
+        icon: SquareFunction,
+    },
 ];
 
 export const AppSidebarFooter = ({ state }: { state: SidebarState }) => {

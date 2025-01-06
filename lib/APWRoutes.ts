@@ -29,6 +29,10 @@ export class APWRoutes {
         pathname: "/profile",
     };
 
+    static ReactHooksFun = {
+        pathname: "/fun-with-react-hooks",
+    };
+
     static SignIn = {
         pathname: "/sign-in",
     };

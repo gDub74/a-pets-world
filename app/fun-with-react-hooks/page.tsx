@@ -1,4 +1,4 @@
-import { PreviousStateExampleWithUseActionState } from "@/components/examples/previous-state";
+import { PreviousStateExampleWithUseActionState } from "@/components/examples/previous-state-with-use-action-state";
 import { Separator } from "@/components/ui/separator";
 import { HeadingTypography } from "@/components/ui/typography/heading";
 

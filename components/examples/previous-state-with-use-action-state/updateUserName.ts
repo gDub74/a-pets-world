@@ -1,16 +1,17 @@
 "use server";
 
-type UpdateUserNameFormData = {
-    name: string;
-};
+import { UserNameFormData } from "./types";
 
-export const updateUserName = async (currentState, formData) => {
-    console.log("currentState", currentState);
-    const newUserName = formData.get("name");
-
+export const updateUserName = async (
+    _: UserNameFormData,
+    payload: FormData,
+): Promise<UserNameFormData> => {
     // delay to simulate async action
     await new Promise((resolve) => {
         setTimeout(resolve, 1000);
     });
-    return newUserName;
+
+    const newUserName = payload.get("name") as string;
+
+    return { name: newUserName };
 };

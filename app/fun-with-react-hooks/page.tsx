@@ -7,8 +7,7 @@ export default function Favorites() {
         <>
             <HeadingTypography>Trying out Newer React Hooks;</HeadingTypography>
             <Separator />
-
-            <div className="mt-20">
+            <div className="my-20">
                 <HeadingTypography variant="h2" className="mt-8">
                     usePrevious custom hook with useActionState:
                 </HeadingTypography>

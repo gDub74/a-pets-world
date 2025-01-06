@@ -20,4 +20,9 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-![alt text](-dashboard.png)
+
+![alt text](a_pets_world_Layout_Night_Theme.png)
+
+![alt text](dashboard.png)
+
+![alt text](auth_with_Clerk.png)

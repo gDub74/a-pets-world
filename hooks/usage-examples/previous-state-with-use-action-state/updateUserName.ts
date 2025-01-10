@@ -13,5 +13,9 @@ export const updateUserName = async (
 
     const newUserName = payload.get("name") as string;
 
+    const data = Object.fromEntries(payload.entries());
+    // Logs on the server because this is a server action
+    console.info("form data using Object.fromEntries: ", data);
+
     return { name: newUserName };
 };

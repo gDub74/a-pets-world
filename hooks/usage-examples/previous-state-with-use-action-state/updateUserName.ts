@@ -3,7 +3,7 @@
 import { UserNameFormData } from "./types";
 
 export const updateUserName = async (
-    _: UserNameFormData,
+    _: unknown,
     payload: FormData,
 ): Promise<UserNameFormData> => {
     // delay to simulate async action
@@ -11,11 +11,9 @@ export const updateUserName = async (
         setTimeout(resolve, 1000);
     });
 
-    const newUserName = payload.get("name") as string;
-
-    const data = Object.fromEntries(payload.entries());
+    const data = Object.fromEntries(payload.entries()) as UserNameFormData;
     // Logs on the server because this is a server action
     console.info("form data using Object.fromEntries: ", data);
 
-    return { name: newUserName };
+    return data;
 };
